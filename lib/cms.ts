@@ -1,0 +1,44 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import { z } from "zod";
+
+const projectSchema = z.object({
+  title: z.string(),
+  period: z.string(),
+  stack: z.array(z.string()),
+  summary: z.string(),
+  notes: z.array(z.string())
+});
+
+const postSchema = z.object({
+  title: z.string(),
+  date: z.string(),
+  tag: z.string(),
+  excerpt: z.string()
+});
+
+const siteSchema = z.object({
+  profile: z.object({
+    name: z.string(),
+    role: z.string(),
+    tagline: z.string(),
+    location: z.string(),
+    experience: z.string(),
+    availability: z.string(),
+    intro: z.array(z.string()),
+    aside: z.array(z.string())
+  }),
+  skills: z.array(z.string()),
+  projects: z.array(projectSchema),
+  posts: z.array(postSchema)
+});
+
+export type SiteContent = z.infer<typeof siteSchema>;
+export type Project = z.infer<typeof projectSchema>;
+export type Post = z.infer<typeof postSchema>;
+
+export async function getSiteContent(): Promise<SiteContent> {
+  const filePath = path.join(process.cwd(), "content", "site.json");
+  const raw = await readFile(filePath, "utf8");
+  return siteSchema.parse(JSON.parse(raw));
+}
