@@ -11,7 +11,7 @@
       "主要使用 Golang 构建高并发服务，也熟悉 Kafka、Redis、MySQL、gRPC、MQTT 等后端基础设施。",
       "最近在探索 LangGraph、MCP、ReAct、RAG 与 Agent 工程化，希望把后端稳定性经验迁移到 AI 应用开发里。"
     ],
-    "aside": ["INFJ", "咖啡重度依赖", "代码洁癖（偶尔）", "Agent 工程化学习中"]
+    "aside": ["INTJ", "咖啡重度依赖", "代码洁癖（偶尔）", "Agent 工程化学习中"]
   },
   "skills": [
     "Golang",
@@ -28,9 +28,26 @@
     "FastAPI",
     "RAG"
   ],
+  "techStack": [
+    { "name": "Golang", "logo": "/images/logos/golang.png", "url": "https://go.dev/" },
+    { "name": "Gin", "logo": "/images/logos/gin.png", "url": "https://gin-gonic.com/" },
+    { "name": "gRPC", "logo": "/images/logos/grpc.png", "url": "https://grpc.io/" },
+    { "name": "Kafka", "logo": "/images/logos/kafka.png", "url": "https://kafka.apache.org/" },
+    { "name": "Redis", "logo": "/images/logos/redis.png", "url": "https://redis.io/" },
+    { "name": "SQL", "logo": "/images/logos/sql.png", "url": "https://en.wikipedia.org/wiki/SQL" },
+    { "name": "MySQL", "logo": "/images/logos/mysql.png", "url": "https://www.mysql.com/" },
+    { "name": "MQTT", "logo": "/images/logos/mqtt.png", "url": "https://mqtt.org/" },
+    { "name": "PHP", "logo": "/images/logos/php.png", "url": "https://www.php.net/" },
+    { "name": "LangGraph", "logo": "/images/logos/langgraph.png", "url": "https://langchain-ai.github.io/langgraph/" },
+    { "name": "MCP", "logo": "/images/logos/mcp.png", "url": "https://modelcontextprotocol.io/" },
+    { "name": "FastAPI", "logo": "/images/logos/fastapi.png", "url": "https://fastapi.tiangolo.com/" },
+    { "name": "RAG", "logo": "/images/logos/rag.png", "url": "https://research.ibm.com/blog/retrieval-augmented-generation-RAG" }
+  ],
   "projects": [
     {
       "title": "Financial Analysis Agent System",
+      "icon": "📊",
+      "badge": "⭐",
       "period": "2026.02 - 至今",
       "stack": ["Python", "LangGraph", "MCP", "FastMCP", "FastAPI", "AkShare"],
       "summary": "基于 LangGraph 的多智能体金融分析系统，通过 MCP 接入金融数据工具，支持自然语言股票查询、自动路由、工具调用和结构化投研报告生成。",
@@ -38,6 +55,8 @@
     },
     {
       "title": "车联网近场控制与 HAVP 调度",
+      "icon": "🚗",
+      "badge": "♡",
       "period": "2022.03 - 2024.03",
       "stack": ["Golang", "gRPC", "Protobuf", "Kafka", "Redis", "MQTT"],
       "summary": "负责车辆控制指令、状态流转和自动泊车后台服务，连接移动端、云端及车载设备。",
@@ -45,6 +64,8 @@
     },
     {
       "title": "高并发营销调度与配置化后台",
+      "icon": "🎯",
+      "badge": "✿",
       "period": "2020.12 - 2022.01",
       "stack": ["Golang", "Gin", "gRPC", "DTM", "Kafka", "Kubernetes"],
       "summary": "支撑 C 端营销活动、优惠发放、活动通知与配置化运营后台，关注大流量下的稳定运行。",
@@ -52,6 +73,8 @@
     },
     {
       "title": "住范儿工地管理系统 / MIS",
+      "icon": "🏗️",
+      "badge": "☺",
       "period": "2017.02 - 2020.09",
       "stack": ["PHP", "Laravel", "MySQL", "Redis", "Vue", "GraphQL"],
       "summary": "从 0 到 1 主导工地管理系统，并参与报价、订单、账单及农行支付链路开发。",

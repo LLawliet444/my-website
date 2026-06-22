@@ -190,9 +190,7 @@ img {
 
 .portrait-paper img {
   object-fit: cover;
-  object-position: 7% 20%;
-  transform: scale(1.95);
-  transform-origin: 18% 42%;
+  object-position: center;
   filter: saturate(1.04) contrast(1.04);
 }
 
@@ -312,13 +310,14 @@ h3 {
 
 .role-highlight {
   display: inline;
-  padding: 0 12px 2px;
+  padding: 6px 12px 10px;
   font-family: var(--font-title);
   font-size: clamp(1.2rem, 2.2vw, 1.72rem);
+  line-height: 1.35;
   background: var(--blue-smear);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
-  clip-path: polygon(0 20%, 100% 4%, 96% 85%, 6% 100%);
+  clip-path: polygon(0 0%, 100% 6%, 96% 100%, 6% 94%);
 }
 
 .intro-copy {
@@ -375,11 +374,28 @@ h3 {
 
 .skill-strip {
   position: relative;
-  margin: 14px 0 38px;
-  padding: 44px 24px 22px;
-  border: 2px solid var(--pencil);
-  border-radius: 49% 51% 50% 48% / 8% 10% 9% 8%;
-  background: oklch(1 0 0 / 0.22);
+  margin: 36px 0 42px;
+  padding: clamp(46px, 5.4vw, 64px) clamp(22px, 2.8vw, 36px) clamp(32px, 3.8vw, 48px);
+  background: oklch(0.98 0.019 86 / 0.42);
+  /* Rectangular rounded corners (slightly uneven for hand-drawn feel) */
+  border-radius: 22px 28px 20px 26px / 24px 20px 26px 22px;
+  overflow: visible;
+}
+
+/* Crayon-style wobbly border drawn on a pseudo element so the
+   logos + pins inside stay sharp. */
+.skill-strip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2.5px solid oklch(0.22 0.02 70 / 0.85);
+  filter: url(#crayon-rough);
+  pointer-events: none;
+  box-shadow:
+    inset -1.5px 1px 0 oklch(0.22 0.02 70 / 0.32),
+    inset 1px -1.5px 0 oklch(0.22 0.02 70 / 0.4),
+    2.5px 3px 0 oklch(0.22 0.02 70 / 0.14);
 }
 
 .skill-strip h2 {
@@ -391,30 +407,107 @@ h3 {
   background: var(--green);
   font-size: 1.2rem;
   transform: rotate(-3deg);
+  z-index: 2;
 }
 
-.tech-logo-sheet {
+.skill-strip > ul {
   position: relative;
-  overflow: hidden;
-  padding: clamp(6px, 1.4vw, 14px);
-  background: oklch(0.98 0.019 86 / 0.42);
-  border-radius: 48% 52% 49% 51% / 5% 6% 5% 7%;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: start;
+  column-gap: clamp(20px, 2.6vw, 36px);
+  row-gap: clamp(30px, 3.6vw, 48px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.tech-logo-sheet::after {
+.skill-strip > ul > li {
+  display: flex;
+  justify-content: center;
+}
+
+/* Staggered vertical positions for "高低不齐" feel */
+.skill-strip > ul > li:nth-child(7n + 1) { transform: translateY(0); }
+.skill-strip > ul > li:nth-child(7n + 2) { transform: translateY(16px); }
+.skill-strip > ul > li:nth-child(7n + 3) { transform: translateY(-12px); }
+.skill-strip > ul > li:nth-child(7n + 4) { transform: translateY(22px); }
+.skill-strip > ul > li:nth-child(7n + 5) { transform: translateY(-8px); }
+.skill-strip > ul > li:nth-child(7n + 6) { transform: translateY(10px); }
+.skill-strip > ul > li:nth-child(7n + 7) { transform: translateY(-18px); }
+
+/* Each sticker is pinned at a different, more obvious angle */
+.skill-strip > ul > li:nth-child(7n + 1) .tech-logo-card { transform: rotate(-9deg); }
+.skill-strip > ul > li:nth-child(7n + 2) .tech-logo-card { transform: rotate(6deg); }
+.skill-strip > ul > li:nth-child(7n + 3) .tech-logo-card { transform: rotate(-3deg); }
+.skill-strip > ul > li:nth-child(7n + 4) .tech-logo-card { transform: rotate(11deg); }
+.skill-strip > ul > li:nth-child(7n + 5) .tech-logo-card { transform: rotate(-6deg); }
+.skill-strip > ul > li:nth-child(7n + 6) .tech-logo-card { transform: rotate(3deg); }
+.skill-strip > ul > li:nth-child(7n + 7) .tech-logo-card { transform: rotate(-11deg); }
+
+.tech-logo-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 78px;
+  padding: 3px;
+  border: 2px dashed oklch(0.22 0.02 70 / 0.7);
+  border-radius: 46% 54% 48% 52% / 12% 14% 12% 14%;
+  background:
+    radial-gradient(circle at 30% 28%, oklch(1 0 0 / 0.88), oklch(1 0 0 / 0.4) 70%),
+    oklch(0.98 0.022 86 / 0.6);
+  /* Drop shadow only (the dashed border replaces the multi-stack shadow) */
+  box-shadow: 1.5px 2px 0 oklch(0.24 0.025 70 / 0.16);
+  transition: transform 160ms ease-out, box-shadow 160ms ease-out, filter 160ms ease-out;
+}
+
+/* Soft paper highlight on the sticker */
+.tech-logo-card::before {
   content: "";
   position: absolute;
-  inset: 12px;
+  inset: 2px;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse at 22% 18%, oklch(1 0 0 / 0.7), transparent 55%),
+    transparent;
   pointer-events: none;
-  border: 1px dashed oklch(0.25 0.01 70 / 0.22);
-  border-radius: 49% 51% 50% 50% / 4% 5% 6% 5%;
+  z-index: 1;
 }
 
-.tech-logo-sheet img {
-  display: block;
+/* The yellow thumbtack pinning the sticker to the board */
+.tech-logo-card::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, oklch(0.98 0.1 95) 0%, oklch(0.88 0.18 90) 32%, oklch(0.72 0.2 80) 78%, oklch(0.5 0.16 70) 100%);
+  box-shadow:
+    0 2px 3px oklch(0.25 0.05 70 / 0.45),
+    inset -1.2px -1.2px 0 oklch(0.45 0.12 75 / 0.55),
+    inset 0.8px 0.8px 0 oklch(1 0 0 / 0.4);
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.tech-logo-card img {
   width: 100%;
   height: auto;
   mix-blend-mode: multiply;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+.tech-logo-card:hover {
+  filter: saturate(1.12) contrast(1.04);
+  box-shadow: 2.5px 3px 0 oklch(0.24 0.025 70 / 0.22);
+  animation: jitter 260ms steps(2, end);
 }
 
 .desk-grid {
@@ -424,8 +517,6 @@ h3 {
   align-items: start;
 }
 
-.paper-panel,
-.about-scrap,
 .profile-sheet,
 .project-sticker,
 .draft-entry {
@@ -434,12 +525,60 @@ h3 {
   background: oklch(1 0 0 / 0.35);
 }
 
+/* paper-panel and about-scrap: rectangular rounded corners
+   with a crayon-style wobbly border (drawn on a ::before so the
+   children and any drop shadow stay sharp). */
+.paper-panel,
+.about-scrap {
+  position: relative;
+  border: 0;
+  border-radius: 22px 26px 20px 24px / 24px 20px 26px 22px;
+  overflow: visible;
+  background: oklch(1 0 0 / 0.35);
+}
+
+.paper-panel::before,
+.about-scrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2.5px solid oklch(0.22 0.02 70 / 0.85);
+  filter: url(#crayon-rough);
+  pointer-events: none;
+  box-shadow:
+    inset -1.5px 1px 0 oklch(0.22 0.02 70 / 0.32),
+    inset 1px -1.5px 0 oklch(0.22 0.02 70 / 0.4),
+    2.5px 3px 0 oklch(0.22 0.02 70 / 0.14);
+}
+
 .paper-panel {
-  padding: 28px 24px 22px;
+  padding: 32px 24px 22px;
 }
 
 .recent-notes {
   transform: rotate(-1.5deg);
+  /* Make room for the spiral binding on the left */
+  padding-left: 36px !important;
+}
+
+/* Spiral notebook binding: two columns of small circles along the
+   left edge of the recent-notes card. */
+.recent-notes::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 12px;
+  width: 16px;
+  background-image:
+    radial-gradient(circle, oklch(0.28 0.02 70 / 0.55) 2.5px, transparent 3px),
+    radial-gradient(circle, oklch(0.28 0.02 70 / 0.55) 2.5px, transparent 3px);
+  background-size: 16px 18px, 16px 18px;
+  background-position: 0 0, 8px 9px;
+  background-repeat: repeat-y;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .project-notes {
@@ -448,17 +587,36 @@ h3 {
 
 .paper-panel h2,
 .about-scrap h2 {
-  margin: 0 0 18px;
-  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  margin: 0;
+  font-size: 0;
+  font-weight: 700;
 }
 
-.paper-panel h2 span {
-  padding: 2px 12px;
-  background: var(--pink-soft);
+/* panel-title replaces h2 — uses cropped images from cute_logos.png */
+.paper-panel .panel-title,
+.about-scrap .panel-title {
+  position: absolute;
+  top: -22px;
+  left: 14px;
+  z-index: 3;
+  line-height: 0;
 }
 
-.project-notes h2 span {
-  background: var(--blue-smear);
+.paper-panel .panel-title img {
+  display: block;
+  width: 150px;
+  height: auto;
+  transform: rotate(-2deg);
+  filter: drop-shadow(2px 2px 0 oklch(0.22 0.02 70 / 0.18));
+}
+
+.project-notes .panel-title img {
+  transform: rotate(-1.5deg);
+}
+
+.about-scrap .panel-title img {
+  width: 130px;
+  transform: rotate(-3deg);
 }
 
 .recent-notes ul,
@@ -471,18 +629,33 @@ h3 {
 
 .recent-notes li {
   display: flex;
-  gap: 11px;
-  padding: 10px 0;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 0;
   border-bottom: 1px dashed oklch(0.37 0.02 72 / 0.28);
 }
 
-.dot {
+.recent-notes li:last-child {
+  border-bottom: 0;
+}
+
+.recent-notes li .dot {
   width: 8px;
   height: 8px;
   flex: 0 0 auto;
-  margin-top: 12px;
+  margin-top: 0;
   border-radius: 50%;
   background: var(--pink);
+}
+
+.recent-notes li a {
+  flex: 1 1 auto;
+  font-family: var(--font-title);
+  font-weight: 600;
+  text-decoration: underline wavy var(--green);
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--green);
 }
 
 .recent-notes time,
@@ -491,104 +664,297 @@ h3 {
   display: block;
   color: var(--ink-soft);
   font-family: var(--font-code);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .text-link {
   display: inline-block;
-  margin-top: 18px;
+  margin-top: 16px;
   font-family: var(--font-title);
   font-weight: 700;
+  text-decoration: underline wavy var(--amber);
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--amber);
 }
 
 .project-list {
   display: grid;
-  gap: 15px;
+  gap: 6px;
+  margin-top: 4px;
 }
 
+/* Project item: icon | content (title + summary) | badge */
 .project-list article {
-  padding-left: 14px;
-  border-left: 1px dashed var(--pencil);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px dashed oklch(0.37 0.02 72 / 0.28);
+}
+
+.project-list article:last-child {
+  border-bottom: 0;
+}
+
+.project-list .icon {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  background: oklch(0.96 0.04 88);
+  border: 1.5px solid oklch(0.45 0.05 70 / 0.35);
+  border-radius: 8px;
+  box-shadow: 1.5px 1.5px 0 oklch(0.22 0.02 70 / 0.18);
+}
+
+.project-list .content {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .project-list strong {
-  font-family: var(--font-code);
-  font-size: 1.05rem;
+  display: block;
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 0.98rem;
+  text-decoration: underline wavy var(--amber);
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--amber);
+}
+
+.project-list .badge {
+  flex: 0 0 auto;
+  font-size: 1.2rem;
+  margin-top: 4px;
+  line-height: 1;
 }
 
 .project-list p {
   margin: 4px 0 0;
   color: var(--ink-soft);
-  font-size: 0.94rem;
-  line-height: 1.55;
+  font-size: 0.84rem;
+  line-height: 1.5;
 }
 
 .about-scrap {
-  padding: 22px 20px 20px;
+  /* Side-by-side: photo on the left, list on the right;
+     bubble spans full width below. */
+  display: grid;
+  grid-template-areas:
+    "photo list"
+    "bubble bubble";
+  grid-template-columns: 132px 1fr;
+  column-gap: 14px;
+  row-gap: 10px;
+  align-items: start;
+  /* Extra top padding so the yellow title tag can overlap the border */
+  padding: 32px 18px 18px;
   transform: rotate(2deg);
   background: oklch(0.98 0.024 92 / 0.58);
 }
 
 .photo-tape {
+  grid-area: photo;
   position: relative;
-  width: min(240px, 80%);
-  margin: 6px auto 18px;
-  padding: 10px;
-  background: oklch(1 0 0 / 0.8);
-  border: 1px solid var(--pencil);
-  transform: rotate(-4deg);
+  width: 132px;
+  margin: 0;
+  /* Polaroid: thin top/sides, thick bottom caption strip */
+  padding: 8px 8px 30px;
+  background: oklch(0.988 0.008 88);
+  border-radius: 3px;
+  box-shadow:
+    0 5px 12px oklch(0.22 0.02 70 / 0.22),
+    0 1px 2px oklch(0.22 0.02 70 / 0.1),
+    inset 0 0 0 1px oklch(0.9 0.015 82 / 0.6);
+  transform: rotate(-6deg);
 }
 
+/* Pink thumbtack (left) */
 .photo-tape::before {
-  top: -14px;
-  left: 22px;
-  background: var(--blue-smear);
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 26%;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, oklch(0.92 0.12 0) 0%, oklch(0.72 0.2 5) 50%, oklch(0.5 0.18 0) 100%);
+  box-shadow:
+    0 1.5px 2px oklch(0.2 0.02 30 / 0.4),
+    inset -1px -1px 0 oklch(0.4 0.1 0 / 0.4);
+  z-index: 2;
+  border: none;
+  transform: none;
+}
+
+/* Yellow thumbtack (right) */
+.photo-tape::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  right: 26%;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, oklch(0.98 0.1 95) 0%, oklch(0.88 0.18 90) 50%, oklch(0.5 0.16 70) 100%);
+  box-shadow:
+    0 1.5px 2px oklch(0.2 0.02 70 / 0.4),
+    inset -1px -1px 0 oklch(0.45 0.12 75 / 0.5);
+  z-index: 2;
 }
 
 .photo-tape img {
   display: block;
   width: 100% !important;
-  height: auto !important;
+  height: 134px !important;
   object-fit: cover;
-  object-position: 8% 22%;
+  object-position: center 25%;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px oklch(0.2 0.02 70 / 0.15);
+}
+
+.about-scrap ul {
+  grid-area: list;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
 .about-scrap li {
-  margin: 7px 0;
-  padding-left: 18px;
   position: relative;
+  margin: 6px 0;
+  padding-left: 18px;
+  font-size: 0.92rem;
+  line-height: 1.5;
 }
 
 .about-scrap li::before {
-  content: "•";
+  content: "";
   position: absolute;
   left: 0;
-  color: var(--amber);
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 0 0 0 1px oklch(0.5 0.05 70 / 0.35);
+}
+
+/* Wavy green underline on the 2nd item, like the reference */
+.about-scrap li:nth-child(2) {
+  text-decoration: underline wavy var(--green);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
 }
 
 .about-scrap p {
+  grid-area: bubble;
   position: relative;
-  margin: 18px -4px 0;
-  padding: 18px 18px;
+  margin: 0;
+  padding: 14px 18px 14px 20px;
   border: 2px solid var(--pencil);
   border-radius: 52% 48% 47% 53% / 16% 18% 15% 17%;
-  background: oklch(1 0 0 / 0.4);
+  background: oklch(1 0 0 / 0.45);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* Speech bubble tail pointing up */
+.about-scrap p::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  right: 32px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 12px solid var(--pencil);
+}
+
+.about-scrap p::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  right: 34px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 10px solid oklch(1 0 0 / 0.45);
 }
 
 .footer-doodle {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-end;
   justify-content: center;
-  gap: 18px;
-  margin-top: 54px;
-  padding-top: 20px;
-  border-top: 3px solid transparent;
-  border-image: linear-gradient(90deg, var(--green), var(--blue), var(--pink), var(--amber)) 1;
+  gap: 18px 24px;
+  margin-top: 64px;
+  padding-top: 44px;
   font-family: var(--font-code);
+  font-size: 0.92rem;
+  color: var(--ink);
 }
 
-.fish-line {
-  color: var(--blue);
+/* Hand-drawn green wavy line above the footer */
+.footer-doodle::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M0,7 Q20,1 40,7 T80,7 T120,7 T160,7 T200,7' stroke='%2390c878' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 200px 18px;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.doodle-cat,
+.doodle-fish {
+  display: block;
+  transform: translateY(10px);
+  mix-blend-mode: multiply;
+}
+
+.doodle-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.doodle-heart {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 2px;
+  mix-blend-mode: multiply;
+}
+
+.codex-stamp {
+  position: absolute;
+  bottom: -10px;
+  right: -6px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: oklch(0.99 0.008 88);
+  padding: 4px;
+  transform: rotate(8deg);
+  box-shadow:
+    0 3px 6px oklch(0.22 0.02 70 / 0.25),
+    0 0 0 1.5px oklch(0.5 0.05 70 / 0.4);
+  z-index: 4;
 }
 
 .subpage {
@@ -800,10 +1166,6 @@ h3 {
     inset: 78px 4px 8px 16px;
   }
 
-  .portrait-paper img {
-    transform: scale(2.1);
-  }
-
   .thought-bubble {
     width: 164px;
     padding: 22px 16px;
@@ -827,6 +1189,32 @@ h3 {
 
   .skill-strip {
     padding-inline: 12px;
+  }
+
+  .skill-strip > ul {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 16px;
+    row-gap: 28px;
+  }
+
+  .tech-logo-card {
+    width: 64px;
+  }
+
+  /* Hide the spiral binding on small screens to save space */
+  .recent-notes {
+    padding-left: 24px !important;
+  }
+
+  .recent-notes::before {
+    display: none;
+  }
+
+  /* Shrink project icons a bit on small screens */
+  .project-list .icon {
+    width: 30px;
+    height: 30px;
+    font-size: 1.05rem;
   }
 }
 

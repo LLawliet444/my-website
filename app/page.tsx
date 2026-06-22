@@ -23,6 +23,19 @@ export default async function Home() {
         <div className="sun-doodle" aria-hidden="true">☀</div>
       </header>
 
+      <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">
+        <defs>
+          <filter id="crayon-rough">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" />
+            <feDisplacementMap in="SourceGraphic" scale="2.4" />
+          </filter>
+          <filter id="crayon-rough-soft">
+            <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="5" />
+            <feDisplacementMap in="SourceGraphic" scale="1.6" />
+          </filter>
+        </defs>
+      </svg>
+
       <section className="hero-spread" aria-labelledby="hero-title">
         <div className="portrait-zone">
           <div className="thought-bubble">
@@ -31,7 +44,7 @@ export default async function Home() {
           <p className="bug-note">bug 退退退 !!</p>
           <div className="portrait-paper">
             <Image
-              src="/images/my_image.png"
+              src="/images/page_head_image.png"
               alt="手绘程序员日记风格的张欣欣小站参考图"
               fill
               priority
@@ -71,34 +84,40 @@ export default async function Home() {
 
       <section className="skill-strip" aria-labelledby="skills-title">
         <h2 id="skills-title">我的技术栈</h2>
-        <div className="tech-logo-sheet">
-          <Image
-            src="/images/tech-stack-logos.png"
-            alt="手绘技术栈 logo：Golang、Gin、gRPC、Kafka、Redis、SQL、MySQL、MQTT、PHP、LangGraph、MCP、FastAPI、RAG"
-            width={1400}
-            height={992}
-            sizes="(max-width: 760px) 94vw, 1080px"
-            style={{ width: "100%", height: "auto" }}
-          />
-          <ul className="sr-only">
-            {site.skills.map((skill) => (
-              <li key={skill}>{skill}</li>
-            ))}
-          </ul>
-        </div>
+        <ul role="list">
+          {site.techStack.map((tech) => (
+            <li key={tech.name}>
+              <a
+                className="tech-logo-card"
+                href={tech.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`访问 ${tech.name} 官网`}
+              >
+                <Image
+                  src={tech.logo}
+                  alt={tech.name}
+                  width={180}
+                  height={220}
+                  sizes="(max-width: 760px) 42vw, 180px"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="desk-grid" aria-label="最近内容">
         <div className="paper-panel recent-notes">
-          <h2><span>最近写了啥</span> ✎</h2>
+          <div className="panel-title">
+            <Image src="/images/cute/title_recent.png" alt="最近写了啥" width={299} height={100} />
+          </div>
           <ul>
             {recentPosts.map((post) => (
               <li key={post.title}>
                 <span className="dot" aria-hidden="true" />
-                <div>
-                  <Link href="/blog">{post.title}</Link>
-                  <time>{post.date}</time>
-                </div>
+                <Link href="/blog">{post.title}</Link>
+                <time>{post.date}</time>
               </li>
             ))}
           </ul>
@@ -106,12 +125,18 @@ export default async function Home() {
         </div>
 
         <div className="paper-panel project-notes">
-          <h2><span>我的项目</span> 📁</h2>
+          <div className="panel-title">
+            <Image src="/images/cute/title_projects.png" alt="我的项目" width={254} height={81} />
+          </div>
           <div className="project-list">
             {featuredProjects.map((project) => (
               <article key={project.title}>
-                <strong>{project.title}</strong>
-                <p>{project.summary}</p>
+                <span className="icon" aria-hidden="true">{project.icon}</span>
+                <div className="content">
+                  <strong>{project.title}</strong>
+                  <p>{project.summary}</p>
+                </div>
+                <span className="badge" aria-hidden="true">{project.badge}</span>
               </article>
             ))}
           </div>
@@ -119,11 +144,13 @@ export default async function Home() {
         </div>
 
         <aside className="about-scrap">
-          <h2>关于我 🙂</h2>
+          <div className="panel-title">
+            <Image src="/images/cute/title_about.png" alt="关于我" width={260} height={100} />
+          </div>
           <div className="photo-tape">
             <Image
-              src="/images/crayon-dev-diary-reference.png"
-              alt="张欣欣的手绘风格小站插画"
+              src="/images/with_golang.png"
+              alt="张欣欣和 golang 的合影"
               width={320}
               height={240}
             />
@@ -133,14 +160,25 @@ export default async function Home() {
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <p>生活除了代码，还有诗和远方（和火锅）。</p>
+          <p>生活除了代码，还有诗和远方（和火锅）♡</p>
+          <Image
+            className="codex-stamp"
+            src="/images/codex_logo.png"
+            alt="Codex"
+            width={80}
+            height={80}
+          />
         </aside>
       </section>
 
       <footer className="footer-doodle">
-        <span>© 2026 {site.profile.name}</span>
-        <span>用 ♡ 和代码搭建</span>
-        <span className="fish-line">~ &lt;&gt;&lt; ~</span>
+        <Image className="doodle-cat" src="/images/cute/cat.png" alt="" width={70} height={48} />
+        <span className="doodle-text">
+          © 2026 {site.profile.name} · 用{" "}
+          <Image className="doodle-heart" src="/images/cute/heart.png" alt="爱" width={18} height={16} />
+          {" "}/Codex/TRAE搭建
+        </span>
+        <Image className="doodle-fish" src="/images/cute/fish.png" alt="" width={64} height={34} />
       </footer>
     </main>
   );
