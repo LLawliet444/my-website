@@ -172,13 +172,13 @@ export default async function Home() {
       </section>
 
       <footer className="footer-doodle">
-        <Image className="doodle-cat" src="/images/cute/cat.png" alt="" width={70} height={48} />
+        <Image className="doodle-cat" src="/images/cute/cat.png" alt="" width={50} height={38} />
         <span className="doodle-text">
           © 2026 {site.profile.name} · 用{" "}
           <Image className="doodle-heart" src="/images/cute/heart.png" alt="爱" width={18} height={16} />
           {" "}/Codex/TRAE搭建
         </span>
-        <Image className="doodle-fish" src="/images/cute/fish.png" alt="" width={64} height={34} />
+        <Image className="doodle-fish" src="/images/cute/fish.png" alt="" width={50} height={24} />
       </footer>
     </main>
   );

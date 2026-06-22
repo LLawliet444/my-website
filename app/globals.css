@@ -302,6 +302,15 @@ h3 {
   font-size: clamp(2.9rem, 5.4vw, 4.45rem);
 }
 
+.intro-cat {
+  display: block;
+  width: 84px;
+  height: auto;
+  margin: 4px 0 8px;
+  transform: rotate(-3deg);
+  mix-blend-mode: multiply;
+}
+
 .intro-zone h1 span {
   display: inline-block;
   color: var(--pink);
@@ -934,8 +943,18 @@ h3 {
 .doodle-cat,
 .doodle-fish {
   display: block;
-  transform: translateY(10px);
   mix-blend-mode: multiply;
+}
+
+.footer-name-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-name-block .doodle-cat {
+  transform: rotate(-4deg);
 }
 
 .doodle-text {
@@ -953,20 +972,14 @@ h3 {
 }
 
 .codex-stamp {
-  position: absolute;
-  /* Hung below the about-scrap box, centered horizontally. */
-  bottom: -42px;
-  left: 50%;
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: oklch(0.99 0.008 88);
-  padding: 4px;
-  transform: translateX(-50%) rotate(8deg);
-  box-shadow:
-    0 3px 6px oklch(0.22 0.02 70 / 0.25),
-    0 0 0 1.5px oklch(0.5 0.05 70 / 0.4);
-  z-index: 4;
+  /* Lives inside the about-scrap grid, directly under the bubble
+     — like the character that's "saying" the line above. */
+  grid-area: codex;
+  justify-self: center;
+  width: 200px;
+  height: 200px;
+  transform: rotate(-4deg);
+  z-index: 1;
 }
 
 .subpage {
