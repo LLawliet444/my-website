@@ -563,8 +563,9 @@ h3 {
 }
 
 /* Spiral notebook binding: two columns of small circles along the
-   left edge of the recent-notes card. */
-.recent-notes::before {
+   left edge of the recent-notes card. Uses ::after so it doesn't
+   override the .paper-panel::before crayon border. */
+.recent-notes::after {
   content: "";
   position: absolute;
   top: 12px;
@@ -578,7 +579,7 @@ h3 {
   background-position: 0 0, 8px 9px;
   background-repeat: repeat-y;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 .project-notes {
@@ -604,8 +605,9 @@ h3 {
 
 .paper-panel .panel-title img {
   display: block;
-  width: 150px;
-  height: auto;
+  height: 40px;
+  width: auto;
+  max-width: 180px;
   transform: rotate(-2deg);
   filter: drop-shadow(2px 2px 0 oklch(0.22 0.02 70 / 0.18));
 }
@@ -615,7 +617,10 @@ h3 {
 }
 
 .about-scrap .panel-title img {
-  width: 130px;
+  height: 40px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
   transform: rotate(-3deg);
 }
 
@@ -745,17 +750,18 @@ h3 {
 
 .about-scrap {
   /* Side-by-side: photo on the left, list on the right;
-     bubble spans full width below. */
+     bubble + codex speaker stack below. */
   display: grid;
   grid-template-areas:
     "photo list"
-    "bubble bubble";
-  grid-template-columns: 132px 1fr;
-  column-gap: 14px;
-  row-gap: 10px;
+    "bubble bubble"
+    "codex codex";
+  grid-template-columns: 168px 1fr;
+  column-gap: 18px;
+  row-gap: 12px;
   align-items: start;
-  /* Extra top padding so the yellow title tag can overlap the border */
-  padding: 32px 18px 18px;
+  /* Extra top padding for the title tag. */
+  padding: 32px 22px 22px;
   transform: rotate(2deg);
   background: oklch(0.98 0.024 92 / 0.58);
 }
@@ -763,10 +769,10 @@ h3 {
 .photo-tape {
   grid-area: photo;
   position: relative;
-  width: 132px;
+  width: 168px;
   margin: 0;
   /* Polaroid: thin top/sides, thick bottom caption strip */
-  padding: 8px 8px 30px;
+  padding: 8px 8px 32px;
   background: oklch(0.988 0.008 88);
   border-radius: 3px;
   box-shadow:
@@ -858,37 +864,42 @@ h3 {
   grid-area: bubble;
   position: relative;
   margin: 0;
-  padding: 14px 18px 14px 20px;
+  padding: 20px 28px;
   border: 2px solid var(--pencil);
-  border-radius: 52% 48% 47% 53% / 16% 18% 15% 17%;
-  background: oklch(1 0 0 / 0.45);
-  font-size: 0.9rem;
+  /* Round speech bubble: slightly imperfect circle for the
+     hand-drawn feel. */
+  border-radius: 48% 52% 50% 50% / 50% 50% 52% 48%;
+  background: oklch(1 0 0 / 0.55);
+  font-size: 0.92rem;
   line-height: 1.55;
+  text-align: center;
 }
 
-/* Speech bubble tail pointing up */
+/* Speech bubble tail pointing down to the codex stamp */
 .about-scrap p::before {
   content: "";
   position: absolute;
-  top: -11px;
-  right: 32px;
+  bottom: -11px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 12px solid var(--pencil);
+  border-top: 12px solid var(--pencil);
 }
 
 .about-scrap p::after {
   content: "";
   position: absolute;
-  top: -7px;
-  right: 34px;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 10px solid oklch(1 0 0 / 0.45);
+  border-top: 10px solid oklch(1 0 0 / 0.55);
 }
 
 .footer-doodle {
@@ -943,14 +954,15 @@ h3 {
 
 .codex-stamp {
   position: absolute;
-  bottom: -10px;
-  right: -6px;
-  width: 64px;
-  height: 64px;
+  /* Hung below the about-scrap box, centered horizontally. */
+  bottom: -42px;
+  left: 50%;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   background: oklch(0.99 0.008 88);
   padding: 4px;
-  transform: rotate(8deg);
+  transform: translateX(-50%) rotate(8deg);
   box-shadow:
     0 3px 6px oklch(0.22 0.02 70 / 0.25),
     0 0 0 1.5px oklch(0.5 0.05 70 / 0.4);
