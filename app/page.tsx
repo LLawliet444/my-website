@@ -1,3 +1,4 @@
+import ContactButton from "@/components/ContactButton";
 import { getSiteContent } from "@/lib/cms";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,9 +19,10 @@ export default async function Home() {
           <Link href="/about">关于我</Link>
           <Link href="/blog">博客</Link>
           <Link href="/projects">项目</Link>
-          <a href="mailto:hello@example.com">留言板 ♡</a>
+          <a href="mailto:522618640@qq.com">留言板 ♡</a>
         </nav>
         <div className="sun-doodle" aria-hidden="true">☀</div>
+        <ContactButton email={site.contact.email} wechat={site.contact.wechat} />
       </header>
 
       <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">

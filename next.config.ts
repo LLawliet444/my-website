@@ -12,7 +12,9 @@ const nextConfig: NextConfig = {
   assetPrefix: "",
   outputFileTracingRoot: path.join(__dirname),
   // 启用 React 严格模式（开发时检查）
-  reactStrictMode: true
+  reactStrictMode: true,
+  // 允许 127.0.0.1 / 局域网 IP 访问 dev 资源（HMR 不会因跨源被拒）
+  allowedDevOrigins: ["127.0.0.1", "192.168.0.113", "localhost"]
 };
 
 export default nextConfig;

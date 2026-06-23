@@ -7,11 +7,15 @@
     "experience": "7 年后端开发经验",
     "intro": [
       "正在学习如何从\u201c后端工程师\u201d变成\u201c产品构建者\u201d。",
-      "主要使用 Golang 构建高并发服务，也熟悉 Kafka、Redis、MySQL、gRPC、MQTT 等后端基础设施。",
-      "最近在探索 LangGraph、MCP、ReAct、RAG 与 Agent 工程化，希望把后端稳定性经验迁移到 AI 应用开发里。",
-      "代码只是手段，我更在意的是——它最后有没有变成一个真正能解决问题的东西。"
+      "我主要用 Golang 构建高并发服务，也熟悉 Kafka、Redis、MySQL、gRPC、MQTT 等后端基础设施。",
+      "最近在尝试把这些工程能力带进 AI 世界，比如 LangGraph、MCP、ReAct、RAG，以及 Agent 系统的工程化实现。",
+      "写代码只是手段，我更在意的是——它最后有没有变成一个真正能解决问题的东西。"
     ],
     "aside": ["INTJ", "咖啡重度依赖", "代码洁癖（偶尔）", "Agent 工程化学习中"]
+  },
+  "contact": {
+    "email": "hello@example.com",
+    "wechat": "zhangjiayu_dev"
   },
   "skills": [
     "Golang",

@@ -36,6 +36,10 @@ const siteSchema = z.object({
     aside: z.array(z.string())
   }),
   skills: z.array(z.string()),
+  contact: z.object({
+    email: z.string(),
+    wechat: z.string()
+  }),
   techStack: z.array(techStackItemSchema),
   projects: z.array(projectSchema),
   posts: z.array(postSchema)
