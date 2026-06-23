@@ -51,38 +51,67 @@
     {
       "title": "Financial Analysis Agent System",
       "icon": "📊",
-      "badge": "⭐",
       "period": "2026.02 - 至今",
-      "stack": ["Python", "LangGraph", "MCP", "FastMCP", "FastAPI", "AkShare"],
+      "category": "数据平台",
+      "stack": ["Python", "LangGraph", "MCP", "FastMCP", "FastAPI", "AKShare"],
       "summary": "基于 LangGraph 的多智能体金融分析系统，通过 MCP 接入金融数据工具，支持自然语言股票查询、自动路由、工具调用和结构化投研报告生成。",
-      "notes": ["Router / 基本面 / 技术面 / 估值 / 新闻 / Summary Agent", "Tool Runtime 超时、重试、异常分类与 fallback", "Trace Logger / Evals / Guardrails"]
+      "notes": ["Router / 基本面 / 技术面 / 估值 / 新闻 / Summary Agent", "Tool Runtime 超时、重试、异常分类与 fallback", "Trace Logger / Evals / Guardrails"],
+      "featured": true
     },
     {
       "title": "车联网近场控制与 HAVP 调度",
       "icon": "🚗",
-      "badge": "♡",
       "period": "2022.03 - 2024.03",
+      "category": "后端服务",
       "stack": ["Golang", "gRPC", "Protobuf", "Kafka", "Redis", "MQTT"],
       "summary": "负责车辆控制指令、状态流转和自动泊车后台服务，连接移动端、云端及车载设备。",
-      "notes": ["状态机管理复杂业务流转", "Redis 幂等控制与并发拦截", "Kafka/MQTT 异步状态同步"]
+      "notes": ["状态机管理复杂业务流转", "Redis 幂等控制与并发拦截", "Kafka/MQTT 异步状态同步"],
+      "featured": true
     },
     {
       "title": "高并发营销调度与配置化后台",
       "icon": "🎯",
-      "badge": "✿",
       "period": "2020.12 - 2022.01",
+      "category": "营销中台",
       "stack": ["Golang", "Gin", "gRPC", "DTM", "Kafka", "Kubernetes"],
       "summary": "支撑 C 端营销活动、优惠发放、活动通知与配置化运营后台，关注大流量下的稳定运行。",
-      "notes": ["DTM 分布式事务", "限流、超时与异常保护", "基于反射的业务操作日志"]
+      "notes": ["DTM 分布式事务", "限流、超时与异常保护", "基于反射的业务操作日志"],
+      "featured": true
     },
     {
-      "title": "住范儿工地管理系统 / MIS",
-      "icon": "🏗️",
-      "badge": "☺",
-      "period": "2017.02 - 2020.09",
-      "stack": ["PHP", "Laravel", "MySQL", "Redis", "Vue", "GraphQL"],
-      "summary": "从 0 到 1 主导工地管理系统，并参与报价、订单、账单及农行支付链路开发。",
-      "notes": ["流程线上化与材料下单调度", "Redis 队列异步任务", "支付对账状态校验"]
+      "title": "住范儿电商业务后台",
+      "icon": "🐘",
+      "period": "2018.06 - 2020.11",
+      "category": "后端服务",
+      "stack": ["PHP", "Laravel", "MySQL", "Redis", "RabbitMQ"],
+      "summary": "负责电商核心交易链路、订单流转、库存与营销活动的后台服务，陪伴公司从初创走到规模化。",
+      "notes": ["复杂订单状态机与售后流程", "高并发库存扣减与一致性", "用 PHP 写出能扛流量的工程"],
+      "featured": true,
+      "featuredVariant": "pink"
+    },
+    {
+      "title": "Blog System",
+      "icon": "💻",
+      "shortStack": "Golang | MySQL",
+      "category": "工具类"
+    },
+    {
+      "title": "TaskFlow",
+      "icon": "✓",
+      "shortStack": "Golang | Redis",
+      "category": "工具类"
+    },
+    {
+      "title": "Log Analyzer",
+      "icon": "🔍",
+      "shortStack": "Python | Elasticsearch",
+      "category": "数据平台"
+    },
+    {
+      "title": "API Gateway",
+      "icon": "💭",
+      "shortStack": "Golang | Kratos",
+      "category": "后端服务"
     }
   ],
   "posts": [

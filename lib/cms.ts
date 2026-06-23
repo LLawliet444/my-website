@@ -6,10 +6,14 @@ const projectSchema = z.object({
   title: z.string(),
   icon: z.string().optional(),
   badge: z.string().optional(),
-  period: z.string(),
-  stack: z.array(z.string()),
-  summary: z.string(),
-  notes: z.array(z.string())
+  period: z.string().optional(),
+  category: z.string().optional(),
+  stack: z.array(z.string()).optional(),
+  shortStack: z.string().optional(),
+  summary: z.string().optional(),
+  notes: z.array(z.string()).optional(),
+  featured: z.boolean().optional(),
+  featuredVariant: z.string().optional()
 });
 
 const postSchema = z.object({
