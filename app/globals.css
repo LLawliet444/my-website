@@ -386,6 +386,7 @@ h3 {
   margin: 36px 0 42px;
   padding: clamp(46px, 5.4vw, 64px) clamp(22px, 2.8vw, 36px) clamp(32px, 3.8vw, 48px);
   background: oklch(0.98 0.019 86 / 0.42);
+  border: 2.5px solid oklch(0.22 0.02 70 / 0.85);
   /* Rectangular rounded corners (slightly uneven for hand-drawn feel) */
   border-radius: 22px 28px 20px 26px / 24px 20px 26px 22px;
   overflow: visible;
@@ -398,7 +399,7 @@ h3 {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  border: 2.5px solid oklch(0.22 0.02 70 / 0.85);
+  border: 2.5px solid oklch(0.22 0.02 70 / 0.45);
   filter: url(#crayon-rough);
   pointer-events: none;
   box-shadow:
@@ -540,7 +541,7 @@ h3 {
 .paper-panel,
 .about-scrap {
   position: relative;
-  border: 0;
+  border: 2.5px solid oklch(0.22 0.02 70 / 0.85);
   border-radius: 22px 26px 20px 24px / 24px 20px 26px 22px;
   overflow: visible;
   background: oklch(1 0 0 / 0.35);
@@ -552,7 +553,7 @@ h3 {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  border: 2.5px solid oklch(0.22 0.02 70 / 0.85);
+  border: 2.5px solid oklch(0.22 0.02 70 / 0.45);
   filter: url(#crayon-rough);
   pointer-events: none;
   box-shadow:
@@ -1226,12 +1227,15 @@ h3 {
     width: 64px;
   }
 
-  /* Hide the spiral binding on small screens to save space */
+  /* Hide the spiral binding on small screens to save space.
+     The crayon border on .recent-notes::before comes from
+     .paper-panel::before — do NOT override it here or the
+     wax/crayon filter is lost on mobile. */
   .recent-notes {
     padding-left: 24px !important;
   }
 
-  .recent-notes::before {
+  .recent-notes::after {
     display: none;
   }
 

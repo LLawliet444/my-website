@@ -1,0 +1,10 @@
+{
+  "name": "xinxin-crayon-dev-diary",
+  "build": {
+    "command": "npm run build",
+    "outputDir": "out"
+  },
+  "env": {
+    "NODE_VERSION": "20"
+  }
+}

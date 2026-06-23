@@ -2,13 +2,17 @@ import type { NextConfig } from "next";
 import path from "node:path";
 
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: path.join(__dirname),
+  // 纯静态导出：build 后产物在 ./out，可直接放到任何静态托管（EdgeOne Pages / Vercel / 任何 CDN）
+  output: "export",
+  // 静态导出要求图片不优化（不能用 next/image 的运行时优化器）
   images: {
-    // 关闭图片优化：避免开发时改了图片看不到效果
-    // 生产环境仍会输出 AVIF/WebP（因为 NODE_ENV 在 build 时为 'production'）
-    unoptimized: process.env.NODE_ENV === "development",
-    formats: ["image/avif", "image/webp"]
-  }
+    unoptimized: true
+  },
+  // 静态导出的资源前缀，留空表示用相对路径
+  assetPrefix: "",
+  outputFileTracingRoot: path.join(__dirname),
+  // 启用 React 严格模式（开发时检查）
+  reactStrictMode: true
 };
 
 export default nextConfig;
