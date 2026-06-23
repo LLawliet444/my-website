@@ -116,28 +116,28 @@
   ],
   "posts": [
     {
-      "title": "用 Go 实现高并发服务时，我最怕的不是 goroutine",
-      "date": "2026-06-20",
+      "title": "车联网 HAVP 近场控制架构：从状态机设计到指令幂等拦截",
+      "date": "2026-06-22",
       "tag": "backend",
-      "excerpt": "真正难的是状态、幂等、超时和补偿，goroutine 只是把问题放大得更快。"
+      "excerpt": "HAVP 自动泊车后台的状态流转设计、Redis 滑动窗口做指令幂等拦截与并发控制、MQTT/Kafka 双通道状态同步的架构权衡。"
     },
     {
-      "title": "LangGraph 里的 Agent 不是魔法，是一堆可观测的状态流转",
+      "title": "好未来营销中台：高并发秒杀场景下的限流、降级与分布式事务",
       "date": "2026-06-18",
-      "tag": "agent",
-      "excerpt": "从后端状态机的视角重新理解 Router、Tool Runtime、Guardrails 和 Trace。"
+      "tag": "backend",
+      "excerpt": "大促活动报名场景中基于 Gin+gRPC+DTM 的限流降级方案设计，以及 DTM 分布式事务在奖励发放场景下的落地实践。"
     },
     {
-      "title": "Kafka 消息可靠性方案：少一点玄学，多一点边界",
-      "date": "2026-06-12",
+      "title": "Bloom Filter 在订单防重与缓存击穿中的应用",
+      "date": "2026-06-14",
       "tag": "infra",
-      "excerpt": "重复消费、补偿、死信与幂等，本质上都是业务语义问题。"
+      "excerpt": "在做营销活动时用 Bloom Filter 拦截重复下单请求，以及在 KV 缓存访问中用它做布隆缓存减少穿透。"
     },
     {
-      "title": "TODO: 明天再优化我的个人网站",
+      "title": "从住范儿到好未来到集度到 Agent：一个后端工程师的 7 年技术债",
       "date": "2026-06-10",
       "tag": "diary",
-      "excerpt": "先把铅笔线画歪一点，再考虑 Lighthouse 分数。"
+      "excerpt": "用 PHP 从 0 到 1 搭系统、用 Golang 扛营销高并发、用状态机管车联网调度、用 LangGraph 写 Agent——每段经历踩过的坑和沉淀的认知。"
     }
   ]
 }

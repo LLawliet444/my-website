@@ -774,13 +774,13 @@ a.contact-modal__value:hover {
 .skill-strip > ul > li:nth-child(7n + 7) { transform: translateY(-18px); }
 
 /* Each sticker is pinned at a different, more obvious angle */
-.skill-strip > ul > li:nth-child(7n + 1) .tech-logo-card { transform: rotate(-9deg); }
-.skill-strip > ul > li:nth-child(7n + 2) .tech-logo-card { transform: rotate(6deg); }
-.skill-strip > ul > li:nth-child(7n + 3) .tech-logo-card { transform: rotate(-3deg); }
-.skill-strip > ul > li:nth-child(7n + 4) .tech-logo-card { transform: rotate(11deg); }
-.skill-strip > ul > li:nth-child(7n + 5) .tech-logo-card { transform: rotate(-6deg); }
-.skill-strip > ul > li:nth-child(7n + 6) .tech-logo-card { transform: rotate(3deg); }
-.skill-strip > ul > li:nth-child(7n + 7) .tech-logo-card { transform: rotate(-11deg); }
+.skill-strip > ul > li:nth-child(7n + 1) .tech-logo-card { --tilt: -9deg; }
+.skill-strip > ul > li:nth-child(7n + 2) .tech-logo-card { --tilt: 6deg;  }
+.skill-strip > ul > li:nth-child(7n + 3) .tech-logo-card { --tilt: -3deg; }
+.skill-strip > ul > li:nth-child(7n + 4) .tech-logo-card { --tilt: 11deg; }
+.skill-strip > ul > li:nth-child(7n + 5) .tech-logo-card { --tilt: -6deg; }
+.skill-strip > ul > li:nth-child(7n + 6) .tech-logo-card { --tilt: 3deg;  }
+.skill-strip > ul > li:nth-child(7n + 7) .tech-logo-card { --tilt: -11deg; }
 
 .tech-logo-card {
   position: relative;
@@ -796,6 +796,7 @@ a.contact-modal__value:hover {
     oklch(0.98 0.022 86 / 0.6);
   /* Drop shadow only (the dashed border replaces the multi-stack shadow) */
   box-shadow: 1.5px 2px 0 oklch(0.24 0.025 70 / 0.16);
+  transform: rotate(var(--tilt, 0deg));
   transition: transform 160ms ease-out, box-shadow 160ms ease-out, filter 160ms ease-out;
 }
 
@@ -1461,6 +1462,51 @@ a.contact-modal__value:hover {
   50% { transform: translate(-1px, 1px) rotate(calc(var(--tilt, 0deg) - 0.4deg)); }
   75% { transform: translate(1px, 1px) rotate(calc(var(--tilt, 0deg) + 0.2deg)); }
   100% { transform: translate(0, 0) rotate(var(--tilt, 0deg)); }
+}
+
+/* ---- 滚动进入视口时的"摇晃"动画 ---- */
+@keyframes jelly {
+  0%   { transform: translateY(0) rotate(var(--tilt, 0deg)) scale(1); }
+  15%  { transform: translateY(-3px) rotate(calc(var(--tilt, 0deg) - 2.2deg)) scale(1.04); }
+  30%  { transform: translateY(2px)  rotate(calc(var(--tilt, 0deg) + 1.8deg)) scale(0.98); }
+  45%  { transform: translateY(-2px) rotate(calc(var(--tilt, 0deg) - 1.4deg)) scale(1.02); }
+  60%  { transform: translateY(1px)  rotate(calc(var(--tilt, 0deg) + 0.8deg)) scale(1); }
+  80%  { transform: translateY(0)    rotate(calc(var(--tilt, 0deg) - 0.3deg)) scale(1); }
+  100% { transform: translateY(0)    rotate(var(--tilt, 0deg)) scale(1); }
+}
+
+/* 技术栈贴纸的左右摇摆：transform-origin 钉在顶部图钉处 */
+@keyframes sway {
+  0%   { transform: rotate(var(--tilt, 0deg)); }
+  10%  { transform: rotate(calc(var(--tilt, 0deg) - 15deg)); }
+  25%  { transform: rotate(calc(var(--tilt, 0deg) + 13deg)); }
+  40%  { transform: rotate(calc(var(--tilt, 0deg) - 10deg)); }
+  55%  { transform: rotate(calc(var(--tilt, 0deg) + 7deg)); }
+  70%  { transform: rotate(calc(var(--tilt, 0deg) - 4deg)); }
+  85%  { transform: rotate(calc(var(--tilt, 0deg) + 1.5deg)); }
+  100% { transform: rotate(var(--tilt, 0deg)); }
+}
+
+/* 给卡片自身一个 var(--tilt) 兜底（如果用户组件没传） */
+.paper-panel,
+.about-scrap,
+.tech-logo-card { --tilt: 0deg; }
+
+/* 进入视口抖动：每次 IntersectionObserver 命中都会跑一次 */
+.jelly-on-view[data-jelly="1"] {
+  animation: jelly 800ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform-origin: 50% 30%;
+}
+
+/* 技术栈贴纸：左右摇晃（模拟图钉挂着的便签被风轻拂） */
+.jelly-on-view[data-jelly="1"] > .tech-logo-card {
+  animation: sway 1100ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
+  transform-origin: 50% 0% !important;   /* 顶部图钉处 */
+}
+
+/* jelly-on-view 默认是 block；技能栈那层因为是 <li> 内的 wrapper，需要 inline-flex 让位置对齐 */
+.skill-strip .jelly-on-view {
+  display: inline-flex;
 }
 
 @media (max-width: 960px) {

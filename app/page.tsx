@@ -1,4 +1,5 @@
 import ContactButton from "@/components/ContactButton";
+import JellyOnView from "@/components/JellyOnView";
 import { getSiteContent } from "@/lib/cms";
 import Image from "next/image";
 import Link from "next/link";
@@ -89,88 +90,96 @@ export default async function Home() {
         <ul role="list">
           {site.techStack.map((tech) => (
             <li key={tech.name}>
-              <a
-                className="tech-logo-card"
-                href={tech.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={`访问 ${tech.name} 官网`}
-              >
-                <Image
-                  src={tech.logo}
-                  alt={tech.name}
-                  width={180}
-                  height={220}
-                  sizes="(max-width: 760px) 42vw, 180px"
-                />
-              </a>
+              <JellyOnView disableOnMobile={false}>
+                <a
+                  className="tech-logo-card"
+                  href={tech.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`访问 ${tech.name} 官网`}
+                >
+                  <Image
+                    src={tech.logo}
+                    alt={tech.name}
+                    width={180}
+                    height={220}
+                    sizes="(max-width: 760px) 42vw, 180px"
+                  />
+                </a>
+              </JellyOnView>
             </li>
           ))}
         </ul>
       </section>
 
       <section className="desk-grid" aria-label="最近内容">
-        <div className="paper-panel recent-notes">
-          <div className="panel-title">
-            <Image src="/images/cute/title_recent.png" alt="最近写了啥" width={299} height={100} />
+        <JellyOnView>
+          <div className="paper-panel recent-notes">
+            <div className="panel-title">
+              <Image src="/images/cute/title_recent.png" alt="最近写了啥" width={299} height={100} />
+            </div>
+            <ul>
+              {recentPosts.map((post) => (
+                <li key={post.title}>
+                  <span className="dot" aria-hidden="true" />
+                  <Link href="/blog">{post.title}</Link>
+                  <time>{post.date}</time>
+                </li>
+              ))}
+            </ul>
+            <Link className="text-link" href="/blog">查看全部文章 →</Link>
           </div>
-          <ul>
-            {recentPosts.map((post) => (
-              <li key={post.title}>
-                <span className="dot" aria-hidden="true" />
-                <Link href="/blog">{post.title}</Link>
-                <time>{post.date}</time>
-              </li>
-            ))}
-          </ul>
-          <Link className="text-link" href="/blog">查看全部文章 →</Link>
-        </div>
+        </JellyOnView>
 
-        <div className="paper-panel project-notes">
-          <div className="panel-title">
-            <Image src="/images/cute/title_projects.png" alt="我的项目" width={254} height={81} />
+        <JellyOnView>
+          <div className="paper-panel project-notes">
+            <div className="panel-title">
+              <Image src="/images/cute/title_projects.png" alt="我的项目" width={254} height={81} />
+            </div>
+            <div className="project-list">
+              {featuredProjects.map((project) => (
+                <article key={project.title}>
+                  <span className="icon" aria-hidden="true">{project.icon}</span>
+                  <div className="content">
+                    <strong>{project.title}</strong>
+                    <p>{project.summary}</p>
+                  </div>
+                  <span className="badge" aria-hidden="true">{project.badge}</span>
+                </article>
+              ))}
+            </div>
+            <Link className="text-link" href="/projects">查看全部项目 →</Link>
           </div>
-          <div className="project-list">
-            {featuredProjects.map((project) => (
-              <article key={project.title}>
-                <span className="icon" aria-hidden="true">{project.icon}</span>
-                <div className="content">
-                  <strong>{project.title}</strong>
-                  <p>{project.summary}</p>
-                </div>
-                <span className="badge" aria-hidden="true">{project.badge}</span>
-              </article>
-            ))}
-          </div>
-          <Link className="text-link" href="/projects">查看全部项目 →</Link>
-        </div>
+        </JellyOnView>
 
-        <aside className="about-scrap">
-          <div className="panel-title">
-            <Image src="/images/cute/title_about.png" alt="关于我" width={260} height={100} />
-          </div>
-          <div className="photo-tape">
+        <JellyOnView>
+          <aside className="about-scrap">
+            <div className="panel-title">
+              <Image src="/images/cute/title_about.png" alt="关于我" width={260} height={100} />
+            </div>
+            <div className="photo-tape">
+              <Image
+                src="/images/with_golang.png"
+                alt="张嘉鱼和 golang 的合影"
+                width={320}
+                height={240}
+              />
+            </div>
+            <ul>
+              {site.profile.aside.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <p>生活除了代码，还有诗和远方（和火锅）♡</p>
             <Image
-              src="/images/with_golang.png"
-              alt="张嘉鱼和 golang 的合影"
-              width={320}
-              height={240}
+              className="codex-stamp"
+              src="/images/codex_logo.png"
+              alt="Codex"
+              width={80}
+              height={80}
             />
-          </div>
-          <ul>
-            {site.profile.aside.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <p>生活除了代码，还有诗和远方（和火锅）♡</p>
-          <Image
-            className="codex-stamp"
-            src="/images/codex_logo.png"
-            alt="Codex"
-            width={80}
-            height={80}
-          />
-        </aside>
+          </aside>
+        </JellyOnView>
       </section>
 
       <footer className="footer-doodle">
