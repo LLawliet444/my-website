@@ -45,7 +45,7 @@ export default async function Home() {
           <div className="portrait-paper">
             <Image
               src="/images/page_head_image.png"
-              alt="手绘程序员日记风格的张欣欣小站参考图"
+              alt="手绘程序员日记风格的张嘉鱼小站参考图"
               fill
               priority
               sizes="(max-width: 900px) 90vw, 42vw"
@@ -150,7 +150,7 @@ export default async function Home() {
           <div className="photo-tape">
             <Image
               src="/images/with_golang.png"
-              alt="张欣欣和 golang 的合影"
+              alt="张嘉鱼和 golang 的合影"
               width={320}
               height={240}
             />
