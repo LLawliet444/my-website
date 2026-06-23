@@ -39,7 +39,7 @@ export default async function Home() {
       <section className="hero-spread" aria-labelledby="hero-title">
         <div className="portrait-zone">
           <div className="thought-bubble">
-            又写完一坨<br />代码啦！
+          先跑起来<br />再说🚀
           </div>
           <p className="bug-note">bug 退退退 !!</p>
           <div className="portrait-paper">

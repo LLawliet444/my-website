@@ -9,7 +9,7 @@ export default async function AboutPage() {
       <Link className="back-link" href="/">← 回到首页</Link>
       <section className="profile-sheet">
         <h1>程序员档案纸</h1>
-        <p className="role-highlight">{site.profile.experience} / {site.profile.location} / {site.profile.availability}</p>
+        <p className="role-highlight">{site.profile.experience} / {site.profile.location}</p>
         <div className="profile-columns">
           <div>
             <h2>我在做什么</h2>

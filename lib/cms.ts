@@ -32,7 +32,6 @@ const siteSchema = z.object({
     tagline: z.string(),
     location: z.string(),
     experience: z.string(),
-    availability: z.string(),
     intro: z.array(z.string()),
     aside: z.array(z.string())
   }),
