@@ -11,6 +11,7 @@ export default async function Home() {
   return (
     <main className="notebook-shell">
       <header className="topbar" aria-label="站点导航">
+        <div className="sun-doodle" aria-hidden="true">☀</div>
         <Link className="brand-mark scribble-underline" href="/">
           ✦ 我的小站 / ★
         </Link>
@@ -19,9 +20,8 @@ export default async function Home() {
           <Link href="/about">关于我</Link>
           <Link href="/blog">博客</Link>
           <Link href="/projects">项目</Link>
-          <a href="mailto:522618640@qq.com">留言板 ♡</a>
+          <a href="mailto:hello@example.com">留言板 ♡</a>
         </nav>
-        <div className="sun-doodle" aria-hidden="true">☀</div>
         <ContactButton email={site.contact.email} wechat={site.contact.wechat} />
       </header>
 
