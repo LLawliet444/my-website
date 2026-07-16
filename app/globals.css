@@ -2363,6 +2363,22 @@ a.fn-contact__row:hover { text-decoration: underline wavy var(--pink); }
   transition: transform 220ms ease-out, box-shadow 220ms ease-out;
 }
 
+.featured-card--yellow {
+  padding-bottom: 132px;
+}
+
+.featured-card--blue {
+  padding-bottom: 104px;
+}
+
+.featured-card--green {
+  padding-bottom: 118px;
+}
+
+.featured-card--pink {
+  padding-bottom: 92px;
+}
+
 .featured-card:hover {
   transform: rotate(0deg) translate(-2px, -4px) scale(1.01);
   box-shadow: 6px 9px 0 oklch(0.22 0.02 70 / 0.55);
@@ -2798,30 +2814,13 @@ a.fn-contact__row:hover { text-decoration: underline wavy var(--pink); }
 /* ---- 响应式 ---- */
 @media (max-width: 980px) {
   .featured-projects { grid-template-columns: 1fr; }
-  .featured-card { min-height: 0; }
-  .other-projects__grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 640px) {
-  .projects-hero {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .projects-hero__note {
-    justify-self: start;
-    width: 150px;
-  }
-  .projects-hero__deco--star { left: 180px; }
-  .projects-title { font-size: 2.2rem; }
-  .other-projects__grid { grid-template-columns: repeat(2, 1fr); }
-  .projects-footer { grid-template-columns: 1fr; text-align: center; }
-  .projects-footer__plant,
-  .projects-footer__social { justify-self: center; }
-
-  /* 手机端：featured-card 内部的便签/装饰全部归位到文档流，避免压字 */
   .featured-card {
-    padding: 26px 18px 22px;
+    min-height: 0;
+    padding-bottom: 28px;
   }
+  .other-projects__grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* 单列布局：featured-card 内部的便签/装饰全部归位到文档流，避免压字 */
   .featured-card__sticky-note {
     position: static !important;
     left: auto !important;
@@ -2882,6 +2881,27 @@ a.fn-contact__row:hover { text-decoration: underline wavy var(--pink); }
     padding: 3px 8px;
     top: 12px;
     right: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-hero {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .projects-hero__note {
+    justify-self: start;
+    width: 150px;
+  }
+  .projects-hero__deco--star { left: 180px; }
+  .projects-title { font-size: 2.2rem; }
+  .other-projects__grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-footer { grid-template-columns: 1fr; text-align: center; }
+  .projects-footer__plant,
+  .projects-footer__social { justify-self: center; }
+
+  .featured-card {
+    padding: 26px 18px 22px;
   }
 }
 
