@@ -47,7 +47,7 @@ export default async function Home() {
           <p className="bug-note">bug 退退退 !!</p>
           <div className="portrait-paper">
             <Image
-              src="/images/page_head_image.png"
+              src="/images/page_head_image.webp"
               alt="手绘程序员日记风格的张嘉鱼小站参考图"
               fill
               priority
@@ -116,7 +116,7 @@ export default async function Home() {
         <JellyOnView>
           <div className="paper-panel recent-notes">
             <div className="panel-title">
-              <Image src="/images/cute/title_recent.png" alt="最近写了啥" width={299} height={100} />
+              <Image src="/images/cute/title_recent.webp" alt="最近写了啥" width={299} height={100} />
             </div>
             <ul>
               {recentPosts.map((post) => (
@@ -134,7 +134,7 @@ export default async function Home() {
         <JellyOnView>
           <div className="paper-panel project-notes">
             <div className="panel-title">
-              <Image src="/images/cute/title_projects.png" alt="我的项目" width={254} height={81} />
+              <Image src="/images/cute/title_projects.webp" alt="我的项目" width={254} height={81} />
             </div>
             <div className="project-list">
               {featuredProjects.map((project) => (
@@ -155,11 +155,11 @@ export default async function Home() {
         <JellyOnView>
           <aside className="about-scrap">
             <div className="panel-title">
-              <Image src="/images/cute/title_about.png" alt="关于我" width={260} height={100} />
+              <Image src="/images/cute/title_about.webp" alt="关于我" width={260} height={100} />
             </div>
             <div className="photo-tape">
               <Image
-                src="/images/with_golang.png"
+                src="/images/with_golang.webp"
                 alt="张嘉鱼和 golang 的合影"
                 width={320}
                 height={240}
@@ -173,7 +173,7 @@ export default async function Home() {
             <p>生活除了代码，还有诗和远方（和火锅）♡</p>
             <Image
               className="codex-stamp"
-              src="/images/codex_logo.png"
+              src="/images/codex_logo.webp"
               alt="Codex"
               width={80}
               height={80}
@@ -183,13 +183,13 @@ export default async function Home() {
       </section>
 
       <footer className="footer-doodle">
-        <Image className="doodle-cat" src="/images/cute/cat.png" alt="" width={50} height={38} />
+        <Image className="doodle-cat" src="/images/cute/cat.webp" alt="" width={50} height={38} />
         <span className="doodle-text">
           © 2026 {site.profile.name} · 用{" "}
-          <Image className="doodle-heart" src="/images/cute/heart.png" alt="爱" width={18} height={16} />
+          <Image className="doodle-heart" src="/images/cute/heart.webp" alt="爱" width={18} height={16} />
           {" "}/Codex/TRAE搭建
         </span>
-        <Image className="doodle-fish" src="/images/cute/fish.png" alt="" width={50} height={24} />
+        <Image className="doodle-fish" src="/images/cute/fish.webp" alt="" width={50} height={24} />
       </footer>
     </main>
   );

@@ -140,7 +140,7 @@ function MiniCard({ project }: { project: Project }) {
 export default async function ProjectsPage() {
   const site = await getSiteContent();
   const all = site.projects;
-  const featured = all.filter((p) => p.featured).slice(0, 4);
+  const featured = all.filter((p) => p.featured);
   const others = all.filter((p) => !p.featured).slice(0, 4);
   // 像贴墙上一样，每张卡片各自带点歪斜
   const tilts = ["-1.8deg", "1.4deg", "-0.9deg", "1.6deg"];

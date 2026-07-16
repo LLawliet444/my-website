@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "张嘉鱼的小站",
     description: "写代码的人随手画出来的生活笔记本。",
-    images: ["/images/crayon-dev-diary-reference.png"]
+    images: ["/images/crayon-dev-diary-reference.webp"]
   }
 };
 
